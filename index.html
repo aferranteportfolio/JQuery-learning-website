@@ -66,22 +66,25 @@
     }
 
     function chapterAnalizer() {
+        
         let state = chapterIdentificator()
         switch(state){
-            case 'Click Me!': return state = 0
-            case 'Chapter 2': return state = 1
+            case 'Click Me!': return state = endChapter1()
+            case 'Chapter 2': return state = endChapter2()
             case 'Chapter 3': return state = 2
         }
     }
     
-    chapterAnalizer()
-    buttonContainer.on('click', endChapter1)
 
-    function endChapter2() {
+    function endChapter1(){
+        buttonContainer.html('Chapter 2')
+    }
+    function endChapter2(){
         buttonContainer.html('Chapter 3')
     }
     
-    buttonContainer.on('click', endChapter2)
+    buttonContainer.on('click', chapterAnalizer)
+
 
 
 
