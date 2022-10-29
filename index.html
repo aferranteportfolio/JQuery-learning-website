@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="./jquery-3.6.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <title>Test if jQuery is loaded</title>
+</head>
+
+<body>
+    <h1></h1>
+    <button>Click Me!</button>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+<script>
+
+
+    // jQuery doesn't cache elements for you. 
+    // you should save the selection in a variable rather than making the selection repeatedly.
+    // look beneath these declarations at the other functions, they are using these pre declared variables and applying JQuery methods to them!
+    let domContainer = $(document)
+    let windowContainer = $(window)
+    let h1Container = $('h1')
+    let buttonContainer = $('button')
+
+
+
+    // JQuery supports functional programing, so you can create functions and call them later, i prefer this style of writing code over others since i find it cleaner to read later on
+    function onLoadChangeH1Content() {
+        h1Container.html('DONT CLICK THE BUTTON!!!!this is a JQuery tutorial, and its meant to be expirienced with the code source by side, if you have it click the button')
+        console.log('The content of the h1s was modified on load')
+    }
+    // you can also apply styles with JQuery, here were using bootstrap so we just add a class and it gets styled for us
+    function styleTheButton() {
+        buttonContainer.addClass("btn btn-primary btn-lg btn-block")
+    }
+    // but we could use the .css() method that comes with JQuery to style the selected element
+    function createABorder() {
+        h1Container.css("border", "1px solid black")
+        console.log('the border arounde the h1s was generated when the DOM state was ready')
+    }
+
+    //this is an on load run a function, and what it does is that it waits for the window (you can interpret it as the webpage itself) has finished loading evrething before executing
+    // for example, lets say we sent a 1 Gigabite image with the html document that is the webpage, this following function would not run until it finished downloading evreything
+    // including the 1 Gigabite image ==>
+    domContainer.ready(createABorder)
+    windowContainer.on("load", onLoadChangeH1Content)
+    windowContainer.on("load", styleTheButton)
+
+    // you can click the button now !
+
+
+
+
+
+
+
+
+
+
+
+    // ideal way to write clean functions and latter calling them ==>
+
+ 
+
+
+
+
+
+
+
+
+
+
+    function changeContentOfH1sOnClick() {
+        h1Container.html('Ooooo magic, this changes because you clicked that button')
+        console.clear()
+        console.log('The content of the h1 changes because of the changeContentOfH1sOnClick function')
+    }
+    buttonContainer.on('click', changeContentOfH1sOnClick)
+
+
+
+</script>
+
+</html>
