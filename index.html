@@ -62,18 +62,20 @@
     }
 
     function chapterIdentificator(){
-        
+       return currentStateOfButton = buttonContainer.text()
     }
 
 
     buttonContainer.on('click', endChapter1)
 
     function endChapter2() {
-        console.log(buttonContainer.text())
+        console.log(chapterIdentificator())
         buttonContainer.html('Chapter 3')
+        console.log(chapterIdentificator())
     }
     
     buttonContainer.on('click', endChapter2)
+
 
 
 
