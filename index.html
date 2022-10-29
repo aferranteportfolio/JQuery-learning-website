@@ -19,19 +19,21 @@
     crossorigin="anonymous"></script>
 
 <script>
-
+    // CHAPTER 1
 
     // jQuery doesn't cache elements for you. 
     // you should save the selection in a variable rather than making the selection repeatedly.
     // look beneath these declarations at the other functions, they are using these pre declared variables and applying JQuery methods to them!
     let domContainer = $(document)
     let windowContainer = $(window)
+    let bodyContainer = $('body')
     let h1Container = $('h1')
     let buttonContainer = $('button')
-
+    
 
 
     // JQuery supports functional programing, so you can create functions and call them later, i prefer this style of writing code over others since i find it cleaner to read later on
+    // you will see at the bottom of every chapter we will do the function calls.
     function onLoadChangeH1Content() {
         h1Container.html('DONT CLICK THE BUTTON!!!!this is a JQuery tutorial, and its meant to be expirienced with the code source by side, if you have it click the button')
         console.log('The content of the h1s was modified on load')
@@ -55,17 +57,69 @@
 
     // you can click the button now !
 
+    function endChapter1(){
+        buttonContainer.html('Chapter 2')
+    }
+
+    function chapterIdentificator(){
+        
+    }
+
+
+    buttonContainer.on('click', endChapter1)
+
+    function endChapter2() {
+        console.log(buttonContainer.text())
+        buttonContainer.html('Chapter 3')
+    }
+    
+    buttonContainer.on('click', endChapter2)
 
 
 
+    // --------------------------------------------------------------------CHAPTER 2----------------------------------------------------------------------
+    //----------------------------------------------------------------Refining Selectors------------------------------------------------------------------
+
+    //Intro ===============>
+    //You can think of refining selectors as a more precise way of finding something, as an analogy imagine that youre tasked with finding a needle in a hay stack, if you were to do it manually it would be
+    //really cumbersome, but instead if i told you that if you said "hayStack.findme('needle')" and huala you found the needle immediately. Thats a refining selector, now you will see how we can use them in
+    //JQuery.
+
+    // first, we need to create our hay stack, so lets create some HTML Tags
+    function elementsToBeCreated () {
+        let hayStack = [
+            div = "<div>", // <=== this one is the hay stack, or the element 0 of the array
+            h1 = "<h1>This is an H1</h1>",
+            h2 = "<h2>This is an H2</h2>",
+            p = "<p>This is a simple paragraph</p>"
+         ]
+    return hayStack
+    }
+    
+    // first we append the main div inside wich we will append once again the other elements
+    function hayCreator(){
+        
+        let elementsImporter = elementsToBeCreated ()
+        let hayStack = elementsImporter[0]
+        bodyContainer.append(hayStack)
+        $('div').attr('id', 'hayStack')//<=== we add a hay stack id just in case, if in the future we create other divs we dont have to come back and add this to filter in our selections of the element
+    }
+    
+    // now we append the other elements using the ...notation, wich allows to pass in an array as a parameter but apply the callback function on each element of said array
+    function elementAttacher(){
+        hayCreator() // <== we call the function so we create the div container and add an id hayStack
+        let elementsImporter = elementsToBeCreated()
+        elementsImporter.splice(0,1) // <==== i splice the array to remove the first element wich was the DIV
+
+        let hayStackContainer = $('#hayStack')              // <==== we select the hay stack element by id
+        hayStackContainer.append(...elementsImporter)      // <==== and we append the array elements to it
+    }
+    
+    windowContainer.on("load", elementAttacher)
 
 
+    
 
-
-
-
-
-    // ideal way to write clean functions and latter calling them ==>
 
  
 
@@ -78,12 +132,12 @@
 
 
 
-    function changeContentOfH1sOnClick() {
-        h1Container.html('Ooooo magic, this changes because you clicked that button')
-        console.clear()
-        console.log('The content of the h1 changes because of the changeContentOfH1sOnClick function')
-    }
-    buttonContainer.on('click', changeContentOfH1sOnClick)
+    // function changeContentOfH1sOnClick() {
+    //     h1Container.html('Ooooo magic, this changes because you clicked that button')
+    //     console.clear()
+    //     console.log('The content of the h1 changes because of the changeContentOfH1sOnClick function')
+    // }
+    // buttonContainer.on('click', changeContentOfH1sOnClick)
 
 
 
