@@ -78,16 +78,14 @@
 
     function endChapter1(){
         buttonContainer.html('Chapter 2')
+        elementAttacher()
     }
+
     function endChapter2(){
         buttonContainer.html('Chapter 3')
     }
     
     buttonContainer.on('click', chapterAnalizer)
-
-
-
-
 
     // --------------------------------------------------------------------CHAPTER 2----------------------------------------------------------------------
     //----------------------------------------------------------------Refining Selectors------------------------------------------------------------------
@@ -127,7 +125,7 @@
         hayStackContainer.append(...elementsImporter)      // <==== and we append the array elements to it
     }
     
-    windowContainer.on("load", elementAttacher)
+    // windowContainer.on("load", elementAttacher)
 
 
     
