@@ -80,6 +80,7 @@
         buttonContainer.html('Chapter 2')
         elementAttacher()
         hayStackManipulation()
+        hayStackStyleManipulation()
     }
 
     function endChapter2(){
@@ -128,16 +129,24 @@
 
     // now we will use refining selectors to select each of the individual elements that we previusly created and modify them, adding style and functionality to demostrate how we can manipulate these selected elementes
     
-    
     function hayStackManipulation(){
         //first we create a timeout function to demostrate that were first generatin the haystack div and its elements and after 2 seconds this function runs ====>
         setTimeout(function() { 
         let pElementInsideTheHayStackDiv = $('#hayStack').find('p')  // we select the P tag using the find method of JQuery
         pElementInsideTheHayStackDiv.html('this was modified after the element was generated!')    // after selecting it we change its html contet to something else
-        }, 2000)
+        }, 2000) // this will occur 2 seconds after we click the button to demostrate it
     }
-    
-    
+
+    // now we will change the style atributes of another element inside our hayStack Div tag.
+    function hayStackStyleManipulation(){
+        //again we use a timeout function to demostrate how it changes after being generated.
+        setTimeout(() => {
+            let H2ElementInsideTheHayStackDiv = $('#hayStack').find('h2') // we select the H2 just like we did with the P element in the prior function.
+            H2ElementInsideTheHayStackDiv.css("border", "2px dotted green") // were going to add some dotted border to the element
+        }, 4000)// this will occur 4 seconds after we click the button to demostrate it
+    }
+
+    // and lastly were going to add some remove functionality! were going to select the whole div and 
 
 // NEXT TO BE DONE, ADD ON CLICK FUNCIONALITY TO THE HAYSTACK ELEMENTS AND ADD STYLING FUNCIONALITY OR FUNCTIONALITY THAT DELETES THAT ROW, AND PROCED TO THE CHAPTER 3
 
