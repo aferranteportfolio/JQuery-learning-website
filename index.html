@@ -44,7 +44,7 @@
     }
     // but we could use the .css() method that comes with JQuery to style the selected element
     function createABorder() {
-        h1Container.css("border", "1px solid black")
+        h1Container.css("border", "5px solid black")
         console.log('the border arounde the h1s was generated when the DOM state was ready')
     }
 
@@ -77,17 +77,29 @@
     
 
     function endChapter1(){
+        hideButtonFor5Seconds()
+        chapterTwoDescriptionTextUpdater()
         buttonContainer.html('Chapter 2')
         elementAttacher()
         hayStackManipulation()
         hayStackStyleManipulation()
+        hayStackRemoveFunctionality()
     }
 
     function endChapter2(){
         buttonContainer.html('Chapter 3')
+        let pElementInsideTheHayStackDiv = $('#hayStack')
+        pElementInsideTheHayStackDiv.remove()
     }
     
     buttonContainer.on('click change', chapterAnalizer)
+
+    function hideButtonFor5Seconds(){
+        buttonContainer.hide()
+        setTimeout(()=>{
+            buttonContainer.show()
+        },5000)
+    }
 
     // --------------------------------------------------------------------CHAPTER 2----------------------------------------------------------------------
     //----------------------------------------------------------------Refining Selectors------------------------------------------------------------------
@@ -96,15 +108,16 @@
     //You can think of refining selectors as a more precise way of finding something, as an analogy imagine that youre tasked with finding a needle in a hay stack, if you were to do it manually it would be
     //really cumbersome, but instead if i told you that if you said "hayStack.findme('needle')" and huala you found the needle inside the haystack immediately, thats a refining selector.
     //Now you will see how we can use them in JQuery.
-    
-
+    function chapterTwoDescriptionTextUpdater(){
+        h1Container.html('Chapter 2, lines 93 , to 170, i sugest you read before clicking the button again')
+    }
     // first, we need to create our hay stack, so lets create some HTML Tags
     function elementsToBeCreated () {
         let hayStack = [
             div = "<div>", // <=== this one is the hay stack, or the element 0 of the array
-            h1 = "<h1>Chapter 2 content</h1>",
-            h2 = "<h2>This is an H2</h2>",
-            p = "<p>This is a simple paragraph</p>"
+            h1 = "<h1>This is a H1 tag inside the hayStack Div element</h1>",
+            h2 = "<h2>This is an H2 tag inside the hayStack Div element</h2>",
+            p = "<p>This is a simple paragraph tag inside the hayStack Div element</p>"
          ]
     return hayStack
     }
@@ -146,7 +159,24 @@
         }, 4000)// this will occur 4 seconds after we click the button to demostrate it
     }
 
-    // and lastly were going to add some remove functionality! were going to select the whole div and 
+    // and lastly were going to add some remove functionality!
+    // were going to select the H1 element inside the div, change its content to "CLICK ME!"
+    // add clickability and add call back function so that when you click on it it disapears!
+
+    function hayStackRemoveFunctionality(){
+        setTimeout(()=>{
+            let H1ElementInsideTheHayStackDiv = $('#hayStack').find('h1') // once again we select the element we want to manipulate inside our hayStack
+
+            H1ElementInsideTheHayStackDiv.html('CLICK ME!') //we change the content of the H1
+
+            H1ElementInsideTheHayStackDiv.click(function () { // i used the .click method of JQuery here, what it does is that it adds an onClick identifier to the element, more on that later.
+                H1ElementInsideTheHayStackDiv.hide()    // we use the hide JQuery method to hide it from the DOM interface, its still there if you inspect the elements, like wise you can use .Show on a hidden element
+                                                        // to reveal it!
+                alert('The H1 is about to hide, look! function hayStackRemoveFunctionality(), lines 160')   // added an alert with some descriptive text just in case.
+            })
+        },6000) // this will occur 6 seconds after we click the button to demostrate it.
+    }
+
 
 // NEXT TO BE DONE, ADD ON CLICK FUNCIONALITY TO THE HAYSTACK ELEMENTS AND ADD STYLING FUNCIONALITY OR FUNCTIONALITY THAT DELETES THAT ROW, AND PROCED TO THE CHAPTER 3
 
