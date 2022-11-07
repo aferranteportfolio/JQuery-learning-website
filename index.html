@@ -48,8 +48,8 @@
         console.log('the border arounde the h1s was generated when the DOM state was ready')
     }
 
-    //this is an on load run a function, and what it does is that it waits for the window (you can interpret it as the webpage itself) has finished loading evrething before executing
-    // for example, lets say we sent a 1 Gigabite image with the html document that is the webpage, this following function would not run until it finished downloading evreything
+    //this is an on load run function, and what it does is that it waits for the window (you can interpret it as the webpage itself) has finished loading everething before executing
+    // for example, lets say we sent a 1 Gigabite image with the html document that is the webpage, this following function would not run until it finished downloading evereything
     // including the 1 Gigabite image ==>
     domContainer.ready(createABorder)
     windowContainer.on("load", onLoadChangeH1Content)
@@ -79,27 +79,29 @@
     function endChapter1(){
         buttonContainer.html('Chapter 2')
         elementAttacher()
+        hayStackManipulation()
     }
 
     function endChapter2(){
         buttonContainer.html('Chapter 3')
     }
     
-    buttonContainer.on('click', chapterAnalizer)
+    buttonContainer.on('click change', chapterAnalizer)
 
     // --------------------------------------------------------------------CHAPTER 2----------------------------------------------------------------------
     //----------------------------------------------------------------Refining Selectors------------------------------------------------------------------
 
     //Intro ===============>
     //You can think of refining selectors as a more precise way of finding something, as an analogy imagine that youre tasked with finding a needle in a hay stack, if you were to do it manually it would be
-    //really cumbersome, but instead if i told you that if you said "hayStack.findme('needle')" and huala you found the needle immediately. Thats a refining selector, now you will see how we can use them in
-    //JQuery.
+    //really cumbersome, but instead if i told you that if you said "hayStack.findme('needle')" and huala you found the needle inside the haystack immediately, thats a refining selector.
+    //Now you will see how we can use them in JQuery.
+    
 
     // first, we need to create our hay stack, so lets create some HTML Tags
     function elementsToBeCreated () {
         let hayStack = [
             div = "<div>", // <=== this one is the hay stack, or the element 0 of the array
-            h1 = "<h1>This is an H1</h1>",
+            h1 = "<h1>Chapter 2 content</h1>",
             h2 = "<h2>This is an H2</h2>",
             p = "<p>This is a simple paragraph</p>"
          ]
@@ -108,7 +110,6 @@
     
     // first we append the main div inside wich we will append once again the other elements
     function hayCreator(){
-        
         let elementsImporter = elementsToBeCreated ()
         let hayStack = elementsImporter[0]
         bodyContainer.append(hayStack)
@@ -120,37 +121,27 @@
         hayCreator() // <== we call the function so we create the div container and add an id hayStack
         let elementsImporter = elementsToBeCreated()
         elementsImporter.splice(0,1) // <==== i splice the array to remove the first element wich was the DIV
-
         let hayStackContainer = $('#hayStack')              // <==== we select the hay stack element by id
         hayStackContainer.append(...elementsImporter)      // <==== and we append the array elements to it
     }
     
-    // windowContainer.on("load", elementAttacher)
 
-
+    // now we will use refining selectors to select each of the individual elements that we previusly created and modify them, adding style and functionality to demostrate how we can manipulate these selected elementes
+    
+    
+    function hayStackManipulation(){
+        //first we create a timeout function to demostrate that were first generatin the haystack div and its elements and after 2 seconds this function runs ====>
+        setTimeout(function() { 
+        let pElementInsideTheHayStackDiv = $('#hayStack').find('p')  // we select the P tag using the find method of JQuery
+        pElementInsideTheHayStackDiv.html('this was modified after the element was generated!')    // after selecting it we change its html contet to something else
+        }, 2000)
+    }
+    
     
 
-
- 
-
-
-
-
-
-
-
-
-
-
-    // function changeContentOfH1sOnClick() {
-    //     h1Container.html('Ooooo magic, this changes because you clicked that button')
-    //     console.clear()
-    //     console.log('The content of the h1 changes because of the changeContentOfH1sOnClick function')
-    // }
-    // buttonContainer.on('click', changeContentOfH1sOnClick)
-
+// NEXT TO BE DONE, ADD ON CLICK FUNCIONALITY TO THE HAYSTACK ELEMENTS AND ADD STYLING FUNCIONALITY OR FUNCTIONALITY THAT DELETES THAT ROW, AND PROCED TO THE CHAPTER 3
 
 
 </script>
-
 </html>
+
